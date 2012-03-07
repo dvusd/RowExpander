@@ -147,15 +147,18 @@ Ext.define('Ext.ux.grid.plugin.RowExpander', {
     toggleAll: function(expand){
         var me = this,
             ds = me.getCmp().getStore(),
-            i = 0,
-            rowIdx;
-            
-        ds.each(function(record){
+            recs = ds.data.items,
+            r = 0,
+            l = recs.length,
+            record;
+
+        //switch to for loop vs ds.each() for perf - avoids the indexOf call
+        for (; r < l; r++){
+            record = recs[r];
             if (me.recordsExpanded[record.internalId] !== expand){
-                rowIdx = ds.indexOf(record);
-                me.toggleRow(rowIdx);
+                me.toggleRow(r);
             }
-        });
+        }
     }
     
 });//eo class
