@@ -3,7 +3,7 @@
  * 
  * Notes:
  * 
- * - Compatible with Ext 4.1
+ * - Compatible with Ext 4.x
  * 
  * Example usage:
         var grid = Ext.create('Ext.grid.Panel',{
