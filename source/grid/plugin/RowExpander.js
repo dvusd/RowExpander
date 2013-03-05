@@ -8,8 +8,8 @@
  * Example usage:
         var grid = Ext.create('Ext.grid.Panel',{
             plugins: [{
-                ptype: 'dvp_rowexpander'
-                ,pluginId: 'xpander'
+                ptype: 'dvp_rowexpander',
+                pluginId: 'xpander'
             }]   
             ...
         });
@@ -18,8 +18,8 @@
 
  * 
  * @author $Author: pscrawford $
- * @version $Rev: 11106 $
- * @date $Date: 2012-03-01 15:07:45 -0700 (Thu, 01 Mar 2012) $
+ * @revision $Rev: 13458 $
+ * @date $Date: 2013-02-20 14:04:38 -0700 (Wed, 20 Feb 2013) $
  * @license Licensed under the terms of the Open Source [LGPL 3.0 license](http://www.gnu.org/licenses/lgpl.html).  Commercial use is permitted to the extent that the code/component(s) do NOT become part of another Open Source or Commercially licensed development library or toolkit without explicit permission.
  * @constructor
  * @param {Object} config 
@@ -35,21 +35,15 @@ Ext.define('Ext.ux.grid.plugin.RowExpander', {
      */
     collapseAllCls: 'rowexpand-collapse-all',
     /**
-     * @cfg {String} collapseAllTip
-     */
-    collapseAllTip: 'Collapse all rows',
-    /**
      * @cfg {String} expandAllCls
      */
     expandAllCls: 'rowexpand-expand-all',
     /**
-     * @cfg {String} expandAllTip
-     */
-    expandAllTip: 'Expand all rows',
-    /**
      * @cfg {String} headerCls
      */
     headerCls: 'rowexpand-header',
+    
+    tooltip: 'Expand/collapse all visible rows',
     
     //properties
     
@@ -92,7 +86,8 @@ Ext.define('Ext.ux.grid.plugin.RowExpander', {
             config = me.callParent(arguments);
         
         Ext.apply(config,{
-            cls: (config.cls || '') + ' ' + me.headerCls
+            cls: (config.cls || '') + ' ' + me.headerCls,
+            tooltip: me.tooltip
         });
         return config;
     },
@@ -147,16 +142,15 @@ Ext.define('Ext.ux.grid.plugin.RowExpander', {
     toggleAll: function(expand){
         var me = this,
             ds = me.getCmp().getStore(),
-            recs = ds.data.items,
-            r = 0,
-            l = recs.length,
+            records = ds.getRange(),
+            l = records.length,
+            i,
             record;
 
-        //switch to for loop vs ds.each() for perf - avoids the indexOf call
-        for (; r < l; r++){
-            record = recs[r];
+        for (i = 0; i < l; i++){ //faster than store.each()
+            record = records[i];
             if (me.recordsExpanded[record.internalId] !== expand){
-                me.toggleRow(r);
+                me.toggleRow(i,record);
             }
         }
     }
