@@ -2,14 +2,14 @@
 ----------------------------------------------- */
 
 .rowexpand-header .rowexpand-expand-all {
-	background-image: url("/includes/library/extjs/ext/resources/themes/images/default/grid/row-expand-sprite.gif");
+	background-image: url("../images/grid/row-expand-sprite.gif");
 	background-position: 0 0;
 	background-repeat: no-repeat;
     margin-left: 1px;
     padding-right: 6px;
 }
 .rowexpand-header .rowexpand-collapse-all {
-	background-image: url("/includes/library/extjs/ext/resources/themes/images/default/grid/row-expand-sprite.gif");
+	background-image: url("../images/grid/row-expand-sprite.gif");
 	background-position: -25px 0;
 	background-repeat: no-repeat;
 	margin-left: 1px;
