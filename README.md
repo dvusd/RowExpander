@@ -3,7 +3,7 @@ RowExpander
 
 Extension to the RowExpander UX from ExtJS that utilizes the column header to expand/collapse all rows.
 
-ExtJS 4.1 Compatible
+ExtJS 5 Compatible
 
 Read the [Forum] post.
 
