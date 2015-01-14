@@ -3,7 +3,7 @@
  * 
  * Notes:
  * 
- * - Compatible with Ext 4.x
+ * - Compatible with Ext 5.x
  * 
  * Example usage:
         var grid = Ext.create('Ext.grid.Panel',{
@@ -17,16 +17,16 @@
         grid.getPlugin('xpander').collapseAll();
 
  * 
- * @author $Author: pscrawford $
- * @revision $Rev: 13458 $
- * @date $Date: 2013-02-20 14:04:38 -0700 (Wed, 20 Feb 2013) $
+ * @author Phil Crawford
+ * @version 1.1
+ * @date 1-14-2016
  * @license Licensed under the terms of the Open Source [LGPL 3.0 license](http://www.gnu.org/licenses/lgpl.html).  Commercial use is permitted to the extent that the code/component(s) do NOT become part of another Open Source or Commercially licensed development library or toolkit without explicit permission.
  * @constructor
  * @param {Object} config 
  */
 Ext.define('Ext.ux.grid.plugin.RowExpander', {
     alias: 'plugin.dvp_rowexpander',
-    extend: 'Ext.ux.RowExpander',
+    extend: 'Ext.grid.plugin.RowExpander',
     
     
     //configurables
