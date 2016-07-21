@@ -3,7 +3,7 @@
  * 
  * Notes:
  * 
- * - Compatible with Ext 5.x
+ * - Compatible with Ext 5.x-6.x
  * 
  * Example usage:
         var grid = Ext.create('Ext.grid.Panel',{
@@ -18,8 +18,8 @@
 
  * 
  * @author Phil Crawford
- * @version 1.1
- * @date 1-14-2016
+ * @version 1.2
+ * @date 7-21-2016
  * @license Licensed under the terms of the Open Source [LGPL 3.0 license](http://www.gnu.org/licenses/lgpl.html).  Commercial use is permitted to the extent that the code/component(s) do NOT become part of another Open Source or Commercially licensed development library or toolkit without explicit permission.
  * @constructor
  * @param {Object} config 
@@ -144,17 +144,23 @@ Ext.define('Ext.ux.grid.plugin.RowExpander', {
             ds = me.getCmp().getStore(),
             records = ds.getRange(),
             l = records.length,
-            i,
-            record;
+            nodes = me.view.getNodes(), 
+            i, node, record;
 
         for (i = 0; i < l; i++){ //faster than store.each()
+            node = me.view.getNode(i);
             record = records[i];
-            if (me.recordsExpanded[record.internalId] !== expand){
-                me.toggleRow(i,record);
+            if (node) {
+                if (me.recordsExpanded[record.internalId] !== expand){
+                    me.toggleRow(i,record);
+                }
+            } else { 
+                if (me.recordsExpanded[record.internalId] !== expand){ 
+                    me.recordsExpanded[record.internalId] = expand; 
+                } 
             }
         }
     }
-    
 });//eo class
 
 //end of file
